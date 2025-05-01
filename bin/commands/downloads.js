@@ -18,7 +18,7 @@ export default defineCommand({
             throw new Error('Empty package name')
         }
 
-        const downloads = await getDepsDownloads('node-red')
+        const downloads = await getDepsDownloads(args.package)
         
         downloads.sort((a, b) => b.downloads - a.downloads)
 
