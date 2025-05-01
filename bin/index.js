@@ -1,7 +1,14 @@
-import { auditPackage } from '../lib/index.js'
+import { defineCommand, runMain } from "citty";
 
-async function main() {
-    await auditPackage('node-red')
-}
+const main = defineCommand({
+    meta: {
+        name: "deps-auditor",
+        version: "1.0.0",
+        description: "Audit npm package dependencies",
+    },
+    subCommands: {
+        downloads: () => import("./commands/downloads.js").then((r) => r.default),
+    },
+});
 
-main()
+runMain(main);
